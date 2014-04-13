@@ -14,4 +14,6 @@ scalaVersion := "2.10.4"
 
 scalacOptions := Seq("-feature","-deprecation")
 
-publishTo := Some(Resolver.file("play", new File("/usr/local/src/play/repository/local/")))
+scalaSource in Compile := baseDirectory.value / "src"
+
+publishTo := Some(Resolver.file("play", file("/usr/local/src/play/repository/local/")))
