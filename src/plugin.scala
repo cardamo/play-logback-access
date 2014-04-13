@@ -15,7 +15,7 @@ object PlayLogbackAccess {
   final val defaultConfigFile = new File("conf", "logback-access.xml")
 }
 
-class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext : ExecutionContext) extends
+final class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext : ExecutionContext) extends
   logback.ContextBase with AppenderAttachable[IAccessEvent] with FilterAttachable[IAccessEvent] {
 
   private[this] val aai = new AppenderAttachableImpl[IAccessEvent]
