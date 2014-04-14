@@ -36,8 +36,8 @@ final class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext
   /** Log a completed request.
     * @param requestTime the time at which the request was received
     */
-  def log(requestTime : Long = -1, request : RequestHeader, result : SimpleResult) {
-    val ev = PlayAccessEvent(requestTime, request, result)
+  def log(requestTime : Long = -1, request : RequestHeader, result : SimpleResult, user : Option[String] = None) {
+    val ev = PlayAccessEvent(requestTime, request, result, user)
     if (getFilterChainDecision(ev) != FilterReply.DENY)
       aai.appendLoopOnAppenders(ev)
   }

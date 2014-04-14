@@ -15,7 +15,7 @@ object PlayAccessEvent {
   private final val portPattern = ":([0-9]{1,5})$".r.pattern
 }
 
-final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, result : SimpleResult) extends IAccessEvent {
+final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, result : SimpleResult, user : Option[String]) extends IAccessEvent {
   private[this] val timestamp = System.currentTimeMillis
   private[this] lazy val adapter = PlayAdapter(requestTime, request, result)
 
@@ -29,7 +29,10 @@ final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, re
   def getRequestURI = request.path
   def getRequestURL = request.method + " " + request.uri + " " + getProtocol
   def getRemoteHost = request.remoteAddress
-  def getRemoteUser = IAccessEvent.NA
+  def getRemoteUser = user.orElse(request match {
+      case a : play.api.mvc.Security.AuthenticatedRequest[_, _] => Some(a.user.toString)
+      case _ => None
+    }).getOrElse(IAccessEvent.NA)
   def getProtocol = request.version
   def getMethod = request.method
   lazy val (hostName, hostPort) = {
