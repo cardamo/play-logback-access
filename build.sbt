@@ -2,7 +2,7 @@ organization := "play.logback.access"
 
 description := "Play framework plugin to generate logback-access events for flexible access logging"
 
-version := "0.1"
+version := "0.2-SNAPSHOT"
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play" % "2.3.0",
