@@ -5,7 +5,7 @@ import java.net.URL
 import scala.concurrent.{ExecutionContext,Future}
 import play.api.Plugin
 import play.api.libs.concurrent
-import play.api.mvc.{RequestHeader,SimpleResult,Filter}
+import play.api.mvc.{RequestHeader,Result,Filter}
 import ch.qos.logback.access.joran.JoranConfigurator
 import ch.qos.logback.access.spi.IAccessEvent
 import ch.qos.logback.{core => logback}
@@ -36,7 +36,7 @@ final class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext
   /** Log a completed request.
     * @param requestTime the time at which the request was received
     */
-  def log(requestTime : Long = -1, request : RequestHeader, result : SimpleResult, user : Option[String] = None) {
+  def log(requestTime : Long = -1, request : RequestHeader, result : Result, user : Option[String] = None) {
     val ev = PlayAccessEvent(requestTime, request, result, user)
     if (getFilterChainDecision(ev) != FilterReply.DENY)
       aai.appendLoopOnAppenders(ev)
@@ -44,10 +44,10 @@ final class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext
 
   /** A Filter that can be used to automatically log all requests. */
   object filter extends Filter {
-    def apply(next : RequestHeader => Future[SimpleResult])(req : RequestHeader) : Future[SimpleResult] = {
+    def apply(next : RequestHeader => Future[Result])(req : RequestHeader) : Future[Result] = {
       val rt = System.currentTimeMillis
       val res = next(req)
-      res.onSuccess { case res : SimpleResult =>
+      res.onSuccess { case res : Result =>
 	log(rt, req, res)
       }
       res
