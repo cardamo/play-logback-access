@@ -10,7 +10,7 @@ libraryDependencies ++= Seq(
   "javax.servlet" % "servlet-api" % "2.5"
 )
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.11.1"
 
 scalacOptions := Seq("-feature","-deprecation")
 
