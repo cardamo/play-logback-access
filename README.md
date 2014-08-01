@@ -6,9 +6,9 @@ This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [
 
 To use it, add the dependency:
 
-> "play.logback.access" %% "play-logback-access" % "0.1"
+> "play.logback.access" %% "play-logback-access" % "0.2"
 
-(You'll probably have to download and `sbt publishLocal` it first, for now.)
+(You may need to download and `sbt publish-local` it first, for now.)
 
 ## Integration
 
