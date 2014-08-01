@@ -1,4 +1,6 @@
-organization := "play.logback.access"
+organization := "org.databrary"
+
+name := "play-logback-access"
 
 description := "Play framework plugin to generate logback-access events for flexible access logging"
 
@@ -18,7 +20,7 @@ libraryDependencies ++= Seq(
 
 scalaVersion := "2.11.1"
 
-crossScalaVersions := Seq("2.10.4", "2.11.1")
+crossScalaVersions ++= Seq("2.10.4")
 
 scalacOptions ++= Seq("-feature","-deprecation")
 

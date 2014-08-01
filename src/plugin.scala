@@ -1,4 +1,4 @@
-package play.logback.access
+package org.databrary
 
 import java.io.File
 import java.net.URL
@@ -8,7 +8,7 @@ import play.api.libs.concurrent
 import play.api.mvc.{RequestHeader,Result,Filter}
 import ch.qos.logback.access.joran.JoranConfigurator
 import ch.qos.logback.access.spi.IAccessEvent
-import ch.qos.logback.{core => logback}
+import ch.qos.logback.{core => Logback}
 import ch.qos.logback.core.spi._
 
 object PlayLogbackAccess {
@@ -16,7 +16,7 @@ object PlayLogbackAccess {
 }
 
 final class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext : ExecutionContext) extends
-  logback.ContextBase with AppenderAttachable[IAccessEvent] with FilterAttachable[IAccessEvent] {
+  Logback.ContextBase with AppenderAttachable[IAccessEvent] with FilterAttachable[IAccessEvent] {
 
   private[this] val aai = new AppenderAttachableImpl[IAccessEvent]
   private[this] val fai = new FilterAttachableImpl[IAccessEvent]
@@ -37,7 +37,7 @@ final class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext
     * @param requestTime the time at which the request was received
     */
   def log(requestTime : Long = -1, request : RequestHeader, result : Result, user : Option[String] = None) {
-    val ev = PlayAccessEvent(requestTime, request, result, user)
+    val ev = logback.PlayAccessEvent(requestTime, request, result, user)
     if (getFilterChainDecision(ev) != FilterReply.DENY)
       aai.appendLoopOnAppenders(ev)
   }
@@ -56,15 +56,15 @@ final class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext
 
   def detachAndStopAllAppenders = aai.detachAndStopAllAppenders
   def getAppender(a : String) = aai.getAppender(a)
-  def isAttached(a : logback.Appender[IAccessEvent]) = aai.isAttached(a)
+  def isAttached(a : Logback.Appender[IAccessEvent]) = aai.isAttached(a)
   def iteratorForAppenders = aai.iteratorForAppenders
-  def addAppender(a : logback.Appender[IAccessEvent]) = aai.addAppender(a)
-  def detachAppender(a : logback.Appender[IAccessEvent]) = aai.detachAppender(a)
+  def addAppender(a : Logback.Appender[IAccessEvent]) = aai.addAppender(a)
+  def detachAppender(a : Logback.Appender[IAccessEvent]) = aai.detachAppender(a)
   def detachAppender(a : String) = aai.detachAppender(a)
 
   def clearAllFilters = fai.clearAllFilters
   def getCopyOfAttachedFiltersList = fai.getCopyOfAttachedFiltersList
-  def addFilter(f : logback.filter.Filter[IAccessEvent]) = fai.addFilter(f)
+  def addFilter(f : Logback.filter.Filter[IAccessEvent]) = fai.addFilter(f)
   def getFilterChainDecision(e : IAccessEvent) = fai.getFilterChainDecision(e)
 }
 

@@ -1,4 +1,4 @@
-package play.logback.access
+package org.databrary.logback
 
 import ch.qos.logback.access.spi._
 import play.api.mvc.{RequestHeader,Result}

@@ -6,16 +6,14 @@ This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [
 
 To use it, add the dependency:
 
-> "play.logback.access" %% "play-logback-access" % "0.2"
-
-(You may need to download and `sbt publish-local` it first, for now.)
+> "org.databrary" %% "play-logback-access" % "0.2"
 
 ## Integration
 
-Add `play.logback.access.LogbackAccessPlugin` to your `conf/play.plugins`, and load the plugin somewhere with:
+Add `org.databrary.LogbackAccessPlugin` to your `conf/play.plugins`, and load the plugin somewhere with:
 
 ```scala
-val accessLogger = play.api.Play.current.plugin[play.logback.access.LogbackAccessPlugin].map(_.api)
+val accessLogger = play.api.Play.current.plugin[org.databrary.LogbackAccessPlugin].map(_.api)
 ```
 
 ## Configuration
