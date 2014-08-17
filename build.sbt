@@ -13,7 +13,7 @@ version := "0.3-SNAPSHOT"
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play" % "2.3.1",
+  "com.typesafe.play" %% "play" % "2.3.3",
   "ch.qos.logback" % "logback-access" % "1.1.2",
   "javax.servlet" % "servlet-api" % "2.5"
 )
