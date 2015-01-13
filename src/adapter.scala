@@ -1,10 +1,10 @@
 package org.databrary.logback
 
 import ch.qos.logback.access.spi._
-import play.api.mvc.{RequestHeader,Result}
+import play.api.mvc.{RequestHeader,SimpleResult}
 import scala.collection.JavaConverters.{asJavaEnumerationConverter,mapAsJavaMapConverter,seqAsJavaListConverter}
 
-final case class PlayAdapter(requestTime : Long, request : RequestHeader, result : Result) extends ServerAdapter {
+final case class PlayAdapter(requestTime : Long, request : RequestHeader, result : SimpleResult) extends ServerAdapter {
   def getRequestTimestamp = requestTime
   def getContentLength = IAccessEvent.SENTINEL // no way to get this here
   def getStatusCode = result.header.status
@@ -15,7 +15,7 @@ object PlayAccessEvent {
   private final val portPattern = ":([0-9]{1,5})$".r.pattern
 }
 
-final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, result : Result, user : Option[String]) extends IAccessEvent {
+final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, result : SimpleResult, user : Option[String]) extends IAccessEvent {
   private[this] val timestamp = System.currentTimeMillis
   private[this] lazy val adapter = PlayAdapter(requestTime, request, result)
 
