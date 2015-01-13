@@ -8,6 +8,8 @@ To use it, add the dependency:
 
 > "org.databrary" %% "play-logback-access" % "0.2"
 
+This requires play 2.3 on scala 2.11.  If you're using play 2.2 or scala 2.10, you can use version "0.1" instead.
+
 ## Integration
 
 Add `org.databrary.LogbackAccessPlugin` to your `conf/play.plugins`, and load the plugin somewhere with:
