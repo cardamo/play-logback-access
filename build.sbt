@@ -13,12 +13,12 @@ version := "0.3-SNAPSHOT"
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play" % "2.3.7",
-  "ch.qos.logback" % "logback-access" % "1.1.2",
+  "com.typesafe.play" %% "play" % "2.3.8",
+  "ch.qos.logback" % "logback-access" % "1.1.3",
   "javax.servlet" % "servlet-api" % "2.5"
 )
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.6"
 
 crossScalaVersions ++= Seq("2.10.4")
 
