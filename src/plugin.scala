@@ -68,7 +68,7 @@ final class PlayLogbackAccess(configs : Iterable[URL])(implicit executionContext
   def getFilterChainDecision(e : IAccessEvent) = fai.getFilterChainDecision(e)
 }
 
-final class LogbackAccessPlugin(app : play.api.Application) extends Plugin {
+final class LogbackAccessPlugin @Inject() (implicit app : play.api.Application) extends Plugin {
   private[this] lazy val executionContext = app.configuration.getString("logbackaccess.context")
     .fold(concurrent.Execution.defaultContext)(
       concurrent.Akka.system(app).dispatchers.lookup)
