@@ -2,6 +2,7 @@ package org.databrary
 
 import java.io.File
 import java.net.URL
+import javax.inject.Inject
 import scala.concurrent.{ExecutionContext,Future}
 import play.api.Plugin
 import play.api.libs.concurrent
