@@ -24,8 +24,6 @@ crossScalaVersions ++= Seq("2.10.4")
 
 scalacOptions ++= Seq("-feature","-deprecation")
 
-scalaSource in Compile := baseDirectory.value / "src"
-
 publishMavenStyle := true
 
 publishArtifact in Test := false
