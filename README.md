@@ -4,27 +4,32 @@ This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [
 
 ## Installation
 
-To use it, add the dependency:
+Add the following dependency for Play 2.4.x:
 
-> "org.databrary" %% "play-logback-access" % "0.2"
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "1.0-SNAPSHOT"
 
-This requires play 2.3 on scala 2.11.  If you're using play 2.2 or scala 2.10, you can use version "0.1" instead.
 
-## Integration
+### Play 2.3.x
 
-Add `org.databrary.LogbackAccessPlugin` to your `conf/play.plugins`, and load the plugin somewhere with:
+For Play 2.3.x on Scala 2.11, use version 0.2:
 
-```scala
-val accessLogger = play.api.Play.current.plugin[org.databrary.LogbackAccessPlugin].map(_.api)
-```
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.2"
+
+[Usage info](https://github.com/databrary/play-logback-access/releases/tag/0.2)
+
+### Play 2.2.x
+For Play 2.2.x on Scala 2.11, use version 0.1:
+
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.1"
+
 
 ## Configuration
 
 Add a configuration file to your `conf/application.conf` with something like:
 
-> logbackaccess.config.resource=logback-access.xml
+    logbackaccess.config.resource=logback-access.xml
 
-`conf/logback-access.xml`:
+Then in `conf/logback-access.xml`:
 
 ```xml
 <configuration>
@@ -44,7 +49,29 @@ Note that patterns requiring access to the full request body or response body (i
 
 There is also a `logbackaccess.context` setting if you want it to use an [execution context other than the default one](http://www.playframework.com/documentation/2.2.x/ThreadPools).
 
-## Use
 
-Finally, either use `accessLogger.filter` in your [GlobalSettings](http://www.playframework.com/documentation/2.2.x/ScalaHttpFilters) object or selectively call `accessLogger.log`.
+## Usage
 
+The library will automatically initialize itself as a [Play Module](https://www.playframework.com/documentation/2.4.x/Modules).
+
+Inject `PlayLogbackAccessApi` into any class to gain access to the API. This exposes:
+- `filter` - [Play Filter](https://www.playframework.com/documentation/2.4.x/ScalaHttpFilters) to log requests automatically
+- `log(requestTime: Long, request: RequestHeader, result: Result, user: Option[String])` - Manually log to the Access logger
+
+### Example: Filter
+
+In file: `app/Filters.scala`
+```scala
+import javax.inject.Inject
+import org.databrary.PlayLogbackAccessApi
+import play.api.http.HttpFilters
+
+class Filters @Inject() (accessLogger: PlayLogbackAccessApi) extends HttpFilters {
+  val filters = Seq(accessLogger.filter)
+}
+```
+
+Then, in file: `conf/application.conf`
+```
+play.http.filters=Filters
+```
