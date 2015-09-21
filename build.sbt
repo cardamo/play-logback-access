@@ -8,7 +8,7 @@ homepage := Some(url("http://github.com/databrary/play-logback-access"))
 
 licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
-version := "1.0-SNAPSHOT"
+version := "0.4"
 
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "javax.servlet" % "servlet-api" % "2.5"
 )
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 crossScalaVersions ++= Seq("2.10.4")
 

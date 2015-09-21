@@ -6,16 +6,16 @@ This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [
 
 Add the following dependency for Play 2.4.x:
 
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "1.0-SNAPSHOT"
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.4"
 
 
 ### Play 2.3.x
 
-For Play 2.3.x on Scala 2.11, use version 0.2:
+For Play 2.3.x on Scala 2.11, use version 0.3:
 
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.2"
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.3"
 
-[Usage info](https://github.com/databrary/play-logback-access/releases/tag/0.2)
+[Usage info](https://github.com/databrary/play-logback-access/releases/tag/0.3)
 
 ### Play 2.2.x
 For Play 2.2.x on Scala 2.10, use version 0.1:
