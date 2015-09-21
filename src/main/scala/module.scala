@@ -10,6 +10,7 @@ import play.api.{Configuration, Environment}
 import scala.concurrent.Future
 
 trait PlayLogbackAccessApi {
+  val context: PlayLogbackAccess
   def log(requestTime : Long = -1, request : RequestHeader, result : Result, user : Option[String] = None)
   val filter: Filter
 }
@@ -25,19 +26,19 @@ class PlayLogbackAccessApiImpl @Inject() (app: play.api.Application, lifecycle: 
       app.configuration.getString("logbackaccess.config.resource").flatMap(app.resource(_)) ++
       app.configuration.getString("logbackaccess.config.url").map(new URL(_))
 
-  lazy val api = new PlayLogbackAccess(configs)(executionContext)
+  lazy val context = new PlayLogbackAccess(configs)(executionContext)
 
   override def log(requestTime: Long, request: RequestHeader, result: Result, user: Option[String]): Unit =
-    api.log _
+    context.log _
 
   override val filter: Filter =
-    api.filter
+    context.filter
 
 
-  api.start()
+  context.start()
 
   lifecycle.addStopHook { () =>
-    Future.successful(api.stop())
+    Future.successful(context.stop())
   }
 }
 
