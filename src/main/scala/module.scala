@@ -32,13 +32,13 @@ class PlayLogbackAccessFilterImpl @Inject()(
     .fold(concurrent.Execution.defaultContext)(
       actorSystem.dispatchers.lookup)
 
-  private lazy val provider = apiProvider.get
+  private lazy val api = apiProvider.get
 
   def apply(next : RequestHeader => Future[Result])(req : RequestHeader) : Future[Result] = {
     val rt = System.currentTimeMillis
     val res = next(req)
     res.onSuccess { case res : Result =>
-      provider.log(rt, req, res)
+      api.log(rt, req, res)
     }
     res
   }
