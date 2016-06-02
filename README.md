@@ -61,6 +61,7 @@ The library will automatically initialize itself as a [Play Module](https://www.
 
 Inject `PlayLogbackAccessApi` into any class to gain access to the API. This exposes:
 - `log(requestTime: Long, request: RequestHeader, result: Result, user: Option[String])` - Manually log to the Access logger
+
 Inject `PlayLogbackAccessFilter` to access a Filter (in 0.4 and earlier this was available as `filter` on the above)
 
 ### Example: Filter
