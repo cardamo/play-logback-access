@@ -4,10 +4,15 @@ This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [
 
 ## Installation
 
+Add the following dependency for Play 2.5.x:
+
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.5"
+
+### Play 2.4.x
+
 Add the following dependency for Play 2.4.x:
 
     libraryDependencies += "org.databrary" %% "play-logback-access" % "0.4"
-
 
 ### Play 2.3.x
 
@@ -55,10 +60,25 @@ There is also a `logbackaccess.context` setting if you want it to use an [execut
 The library will automatically initialize itself as a [Play Module](https://www.playframework.com/documentation/2.4.x/Modules).
 
 Inject `PlayLogbackAccessApi` into any class to gain access to the API. This exposes:
-- `filter` - [Play Filter](https://www.playframework.com/documentation/2.4.x/ScalaHttpFilters) to log requests automatically
 - `log(requestTime: Long, request: RequestHeader, result: Result, user: Option[String])` - Manually log to the Access logger
+Inject `PlayLogbackAccessFilter` to access a Filter (in 0.4 and earlier this was available as `filter` on the above)
 
 ### Example: Filter
+
+#### 0.5 and later:
+
+In file: `app/Filters.scala`
+```scala
+import javax.inject.Inject
+import org.databrary.PlayLogbackAccessFilter
+import play.api.http.HttpFilters
+
+class Filters @Inject() (accessLogger: PlayLogbackAccessFilter) extends HttpFilters {
+  val filters = Seq(accessLogger)
+}
+```
+
+#### Before 0.5:
 
 In file: `app/Filters.scala`
 ```scala
