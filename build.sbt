@@ -8,19 +8,23 @@ homepage := Some(url("http://github.com/databrary/play-logback-access"))
 
 licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
-version := "0.4"
+version := "0.5"
 
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play" % "2.4.3",
+  "com.typesafe.play" %% "play" % "2.5.0",
   "ch.qos.logback" % "logback-access" % "1.1.3",
   "javax.servlet" % "servlet-api" % "2.5"
 )
 
+libraryDependencies ++= Seq(
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0" % Test
+)
+
 scalaVersion := "2.11.7"
 
-crossScalaVersions ++= Seq("2.10.4")
+//crossScalaVersions ++= Seq("2.10.4")
 
 scalacOptions ++= Seq("-feature","-deprecation")
 
