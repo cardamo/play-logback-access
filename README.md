@@ -23,6 +23,7 @@ For Play 2.3.x on Scala 2.11, use version 0.3:
 [Usage info](https://github.com/databrary/play-logback-access/releases/tag/0.3)
 
 ### Play 2.2.x
+
 For Play 2.2.x on Scala 2.10, use version 0.1:
 
     libraryDependencies += "org.databrary" %% "play-logback-access" % "0.1"

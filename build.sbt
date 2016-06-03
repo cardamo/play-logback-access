@@ -24,8 +24,6 @@ libraryDependencies ++= Seq(
 
 scalaVersion := "2.11.7"
 
-//crossScalaVersions ++= Seq("2.10.4")
-
 scalacOptions ++= Seq("-feature","-deprecation")
 
 publishMavenStyle := true
