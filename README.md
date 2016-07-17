@@ -6,7 +6,7 @@ This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [
 
 Add the following dependency for Play 2.5.x:
 
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.5"
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.5.1"
 
 ### Play 2.4.x
 
