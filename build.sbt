@@ -15,7 +15,7 @@ resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/release
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play" % "2.5.0",
   "ch.qos.logback" % "logback-access" % "1.1.4",
-  "javax.servlet" % "servlet-api" % "2.5"
+  "javax.servlet" % "servlet-api" % "2.5" % Optional
 )
 
 libraryDependencies ++= Seq(

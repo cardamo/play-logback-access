@@ -9,7 +9,7 @@ import akka.stream.Materializer
 import play.api.inject.{ApplicationLifecycle, Binding, Module}
 import play.api.libs.concurrent
 import play.api.mvc.{Filter, RequestHeader, Result}
-import play.api.{Application, Configuration, Environment}
+import play.api.{Configuration, Environment}
 
 import scala.concurrent.Future
 
@@ -54,7 +54,7 @@ class PlayLogbackAccessApiImpl @Inject() (app: play.api.Application, lifecycle: 
   lazy val context = new PlayLogbackAccess(configs)
 
   override def log(requestTime: Long, request: RequestHeader, result: Result, user: Option[String]): Unit =
-    context.log _
+    context.log(requestTime, request, result, user)
 
   context.start()
 
