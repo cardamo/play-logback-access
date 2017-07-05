@@ -13,16 +13,16 @@ version := "0.5.1"
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play" % "2.5.0",
-  "ch.qos.logback" % "logback-access" % "1.1.4",
-  "javax.servlet" % "servlet-api" % "2.5" % Optional
+  "com.typesafe.play" %% "play" % "2.6.0",
+  "ch.qos.logback" % "logback-access" % "1.2.3",
+  "javax.servlet" % "javax.servlet-api" % "3.1.0" % Optional
 )
 
 libraryDependencies ++= Seq(
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "3.0.0" % Test
 )
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.2"
 
 scalacOptions ++= Seq("-feature","-deprecation")
 

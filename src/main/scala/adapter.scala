@@ -65,4 +65,10 @@ final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, re
   def prepareForDeferredProcessing() {
     /* what am I supposed to be doing here? */
   }
+  def getElapsedSeconds: Long = getElapsedTime / 1000
+  def getQueryString: String = request.rawQueryString
+  // there is no session id in Play and threads mean little because of async http engine
+  def getThreadName: String = IAccessEvent.NA
+  def getSessionID: String = IAccessEvent.NA
+  def setThreadName(threadName: String): Unit = {}
 }
