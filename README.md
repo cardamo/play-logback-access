@@ -2,9 +2,21 @@
 
 This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [access](http://logback.qos.ch/access.html) framework within [Play](http://www.playframework.com).
 
+## Distribution
+
+Binaries starting from version 0.5.2 are currently available from this bintray repository.
+
+    resolvers += Resolver.bintrayRepo("cardamo", "com.cardamo.play-logback-access"),
+
+I'm going to publish them at jcenter but it may require changing groupId.
+
 ## Installation
 
-Add the following dependency for Play 2.5.x:
+Add the following dependency for Play > 2.5.14:
+
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.5.2"
+
+Add the following dependency for Play 2.5.0 - 2.5.13:
 
     libraryDependencies += "org.databrary" %% "play-logback-access" % "0.5.1"
 
