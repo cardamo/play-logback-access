@@ -12,34 +12,17 @@ I'm going to publish them at jcenter but it may require changing groupId.
 
 ## Installation
 
-Add the following dependency for Play > 2.5.14:
+Add the following dependency for Play 2.6.x:
 
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.5.2"
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.6.0"
 
-Add the following dependency for Play 2.5.0 - 2.5.13:
-
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.5.1"
-
-### Play 2.4.x
-
-Add the following dependency for Play 2.4.x:
-
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.4"
-
-### Play 2.3.x
-
-For Play 2.3.x on Scala 2.11, use version 0.3:
-
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.3"
-
-[Usage info](https://github.com/databrary/play-logback-access/releases/tag/0.3)
-
-### Play 2.2.x
-
-For Play 2.2.x on Scala 2.10, use version 0.1:
-
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.1"
-
+| play version | lib version |
+|--------------|-------------|
+| 2.5.14+      | 0.5.2       |
+| 2.5.0+       | 0.5.1       |
+| 2.4.x        | 0.4         |
+| 2.3.x        | 0.3         |
+| 2.2.x        | 0.1         |
 
 ## Configuration
 
@@ -79,7 +62,12 @@ Inject `PlayLogbackAccessFilter` to access a Filter (in 0.4 and earlier this was
 
 ### Example: Filter
 
-#### 0.5 and later:
+#### 0.6:
+In file `conf/application.conf`
+
+    play.filters.enabled += org.databrary.PlayLogbackAccessFilter
+
+#### 0.5:
 
 In file: `app/Filters.scala`
 ```scala

@@ -12,10 +12,10 @@ homepage := Some(url("http://github.com/cardamo/play-logback-access"))
 
 licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
-version := "0.5.2"
+version := "0.6.0"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play" % "2.5.14",
+  "com.typesafe.play" %% "play" % "2.6.0",
   "ch.qos.logback" % "logback-access" % "1.2.3",
   "javax.servlet" % "javax.servlet-api" % "3.1.0" % Optional
 )
@@ -24,7 +24,8 @@ libraryDependencies ++= Seq(
   "org.scalatestplus.play" %% "scalatestplus-play" % "3.0.0" % Test
 )
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.2"
+crossScalaVersions := Seq("2.11.7", "2.12.2")
 
 scalacOptions ++= Seq("-feature","-deprecation")
 
