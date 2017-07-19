@@ -4,17 +4,17 @@ This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [
 
 ## Distribution
 
-Binaries starting from version 0.5.2 are currently available from this bintray repository.
+Binaries starting from version 0.5.2 are published to jcenter.
 
-    resolvers += Resolver.bintrayRepo("cardamo", "com.cardamo.play-logback-access"),
-
-I'm going to publish them at jcenter but it may require changing groupId.
+    resolvers += Resolver.jcenterRepo
 
 ## Installation
 
 Add the following dependency for Play 2.6.x:
 
     libraryDependencies += "org.databrary" %% "play-logback-access" % "0.6.0"
+
+For older versions of Play use:
 
 | play version | lib version |
 |--------------|-------------|
