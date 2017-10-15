@@ -69,3 +69,10 @@ class PlayLogbackAccessModule extends Module {
     bind[PlayLogbackAccessFilter].to[PlayLogbackAccessFilterImpl]
   )
 }
+
+class PlayLogbackAccessLazyInjectModule extends Module {
+  override def bindings(environment: Environment, configuration: Configuration): Seq[Binding[_]] = Seq(
+    bind[PlayLogbackAccessApi].to[PlayLogbackAccessApiImpl],
+    bind[PlayLogbackAccessFilter].to[PlayLogbackAccessFilterImpl]
+  )
+}
