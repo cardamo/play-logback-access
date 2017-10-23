@@ -29,6 +29,7 @@ For older versions of Play use:
 Add a configuration file to your `conf/application.conf` with something like:
 
     logbackaccess.config.resource=logback-access.xml
+    play.modules.enabled += "org.databrary.PlayLogbackAccessModule"
 
 Then in `conf/logback-access.xml`:
 
@@ -53,7 +54,12 @@ There is also a `logbackaccess.context` setting if you want it to use an [execut
 
 ## Usage
 
-The library will automatically initialize itself as a [Play Module](https://www.playframework.com/documentation/2.4.x/Modules).
+The library is a [Play Module](https://www.playframework.com/documentation/2.5.x/Modules) which
+you need to enable by adding this to application's `.conf` file:
+
+    play.modules.enabled += "org.databrary.PlayLogbackAccessModule"
+
+(if you experience any issues with dependency injection (esp. during tests), please try using `PlayLogbackAccessLazyInjectModule` which does the lazy dependency injection)
 
 Inject `PlayLogbackAccessApi` into any class to gain access to the API. This exposes:
 - `log(requestTime: Long, request: RequestHeader, result: Result, user: Option[String])` - Manually log to the Access logger
