@@ -54,7 +54,7 @@ There is also a `logbackaccess.context` setting if you want it to use an [execut
 
 ## Usage
 
-The library is a [Play Module](https://www.playframework.com/documentation/2.5.x/Modules) which
+The library is a [Play Module](https://www.playframework.com/documentation/2.6.x/Modules) which
 you need to enable by adding this to application's `.conf` file:
 
     play.modules.enabled += "org.databrary.PlayLogbackAccessModule"
@@ -66,40 +66,7 @@ Inject `PlayLogbackAccessApi` into any class to gain access to the API. This exp
 
 Inject `PlayLogbackAccessFilter` to access a Filter (in 0.4 and earlier this was available as `filter` on the above)
 
-### Example: Filter
+### Usage before version 0.6
 
-#### 0.6:
-In file `conf/application.conf`
-
-    play.filters.enabled += org.databrary.PlayLogbackAccessFilter
-
-#### 0.5:
-
-In file: `app/Filters.scala`
-```scala
-import javax.inject.Inject
-import org.databrary.PlayLogbackAccessFilter
-import play.api.http.HttpFilters
-
-class Filters @Inject() (accessLogger: PlayLogbackAccessFilter) extends HttpFilters {
-  val filters = Seq(accessLogger)
-}
-```
-
-#### Before 0.5:
-
-In file: `app/Filters.scala`
-```scala
-import javax.inject.Inject
-import org.databrary.PlayLogbackAccessApi
-import play.api.http.HttpFilters
-
-class Filters @Inject() (accessLogger: PlayLogbackAccessApi) extends HttpFilters {
-  val filters = Seq(accessLogger.filter)
-}
-```
-
-Then, in file: `conf/application.conf`
-```
-play.http.filters=Filters
-```
+Please refer to [this page](https://github.com/cardamo/play-logback-access/tree/0.5.2#logback-access-plugin-for-play-2)
+for previuos docs.
