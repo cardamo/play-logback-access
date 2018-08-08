@@ -12,7 +12,7 @@ Binaries starting from version 0.5.2 are published to jcenter.
 
 Add the following dependency for Play 2.6.x:
 
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.6.0"
+    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.6.2"
 
 For older versions of Play use:
 
@@ -29,7 +29,8 @@ For older versions of Play use:
 Add a configuration file to your `conf/application.conf` with something like:
 
     logbackaccess.config.resource=logback-access.xml
-    play.modules.enabled += "org.databrary.PlayLogbackAccessModule"
+    play.modules.enabled += org.databrary.PlayLogbackAccessModule
+    play.filters.enabled += org.databrary.PlayLogbackAccessFilter
 
 Then in `conf/logback-access.xml`:
 

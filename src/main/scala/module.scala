@@ -2,16 +2,16 @@ package org.databrary
 
 import java.io.File
 import java.net.URL
-import javax.inject.{Inject, Provider, Singleton}
 
+import javax.inject.{Inject, Provider, Singleton}
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import play.api.inject.{ApplicationLifecycle, Binding, Module}
-import play.api.libs.concurrent
 import play.api.mvc.{Filter, RequestHeader, Result}
 import play.api.{Configuration, Environment}
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
+import scala.util.Success
 
 trait PlayLogbackAccessApi {
   val context: PlayLogbackAccess
@@ -26,30 +26,31 @@ class PlayLogbackAccessFilterImpl @Inject()(
     val mat: Materializer,
     configuration: Configuration,
     actorSystem: ActorSystem,
+    defaultExecutionContext: ExecutionContext,
     apiProvider: Provider[PlayLogbackAccessApi]) extends PlayLogbackAccessFilter {
 
-  private[this] implicit lazy val executionContext = configuration.getString("logbackaccess.context")
-    .fold(concurrent.Execution.defaultContext)(
-      actorSystem.dispatchers.lookup)
+  private[this] implicit lazy val executionContext: ExecutionContext = configuration
+    .getOptional[String]("logbackaccess.context")
+    .fold(defaultExecutionContext)(actorSystem.dispatchers.lookup)
 
   private lazy val api = apiProvider.get
 
   def apply(next : RequestHeader => Future[Result])(req : RequestHeader) : Future[Result] = {
     val rt = System.currentTimeMillis
-    val res = next(req)
-    res.onSuccess { case res : Result =>
-      api.log(rt, req, res)
+    val resp = next(req)
+    resp.onComplete {
+      case Success(res) => api.log(rt, req, res)
     }
-    res
+    resp
   }
 }
 
 class PlayLogbackAccessApiImpl @Inject() (app: play.api.Application, lifecycle: ApplicationLifecycle) extends PlayLogbackAccessApi {
 
   private[this] lazy val configs =
-    app.configuration.getString("logbackaccess.config.file").map(new File(_).toURI.toURL) ++
-      app.configuration.getString("logbackaccess.config.resource").flatMap(app.resource) ++
-      app.configuration.getString("logbackaccess.config.url").map(new URL(_))
+    app.configuration.getOptional[String]("logbackaccess.config.file").map(new File(_).toURI.toURL) ++
+      app.configuration.getOptional[String]("logbackaccess.config.resource").flatMap(app.environment.resource) ++
+      app.configuration.getOptional[String]("logbackaccess.config.url").map(new URL(_))
 
   lazy val context = new PlayLogbackAccess(configs)
 
