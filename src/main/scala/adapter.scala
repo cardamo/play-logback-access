@@ -52,7 +52,7 @@ final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, re
   def getAttribute(key : String) = IAccessEvent.NA
   def getRequestParameter(key : String) = request.queryString.get(key).fold(Array(IAccessEvent.NA))(_.toArray)
   def getCookie(key : String) = request.cookies.get(key).fold(IAccessEvent.NA)(_.value)
-  def getContentLength = IAccessEvent.SENTINEL // no way to get this here
+  def getContentLength = result.body.contentLength.getOrElse(IAccessEvent.SENTINEL)
   def getStatusCode = result.header.status
   /* these could be implemented for full logging, but may be too costly: */
   def getRequestContent = ""
