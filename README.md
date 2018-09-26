@@ -7,6 +7,10 @@ This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [
 Binaries starting from version 0.5.2 are published to jcenter.
 
     resolvers += Resolver.jcenterRepo
+    
+For scala 2.11 use my private repositery as a resolver (the reason is described in [this comment](https://github.com/cardamo/play-logback-access/issues/12#issuecomment-328971173))
+    
+    resolvers += Resolver.bintrayRepo("cardamo", "com.cardamo.play-logback-access")
 
 ## Installation
 
