@@ -2,31 +2,23 @@
 
 This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [access](http://logback.qos.ch/access.html) framework within [Play](http://www.playframework.com).
 
-## Distribution
-
-Binaries starting from version 0.5.2 are published to jcenter.
-
-    resolvers += Resolver.jcenterRepo
-    
-For scala 2.11 use my private repositery as a resolver (the reason is described in [this comment](https://github.com/cardamo/play-logback-access/issues/12#issuecomment-328971173))
-    
-    resolvers += Resolver.bintrayRepo("cardamo", "com.cardamo.play-logback-access")
 
 ## Installation
 
-Add the following dependency for Play 2.6.x:
+Add JitPack resolver and the dependency
 
-    libraryDependencies += "org.databrary" %% "play-logback-access" % "0.6.2"
+    resolvers += "jitpack" at "https://jitpack.io"
 
-For older versions of Play use:
+    libraryDependencies += "com.github.cardamo" % "play-logback-access" % "0.7.0"
+
+Play version compatibility:
 
 | play version | lib version |
 |--------------|-------------|
-| 2.5.14+      | 0.5.2       |
-| 2.5.0+       | 0.5.1       |
-| 2.4.x        | 0.4         |
-| 2.3.x        | 0.3         |
-| 2.2.x        | 0.1         |
+| 2.8.x        | 0.7.0       |
+| 2.7.x        | 0.6.2       |
+| 2.6.x        | 0.6.2       |
+| 2.5.14+      | 0.5.3       |
 
 ## Configuration
 
@@ -71,7 +63,7 @@ Inject `PlayLogbackAccessApi` into any class to gain access to the API. This exp
 
 Inject `PlayLogbackAccessFilter` to access a Filter (in 0.4 and earlier this was available as `filter` on the above)
 
-### Usage before version 0.6
+### Usage before version 0.5.3
 
 Please refer to [this page](https://github.com/cardamo/play-logback-access/tree/0.5.2#logback-access-plugin-for-play-2)
-for previuos docs.
+for previous docs.

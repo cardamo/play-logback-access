@@ -1,8 +1,4 @@
-resolvers += Resolver.jcenterRepo
-
 organization := "org.databrary"
-
-bintrayRepository := "com.cardamo.play-logback-access"
 
 name := "play-logback-access"
 
@@ -12,20 +8,20 @@ homepage := Some(url("http://github.com/cardamo/play-logback-access"))
 
 licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
-version := "0.6.3"
+version := "0.7.0-SNAPSHOT"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play" % "2.6.18",
+  "com.typesafe.play" %% "play" % "2.8.7",
   "ch.qos.logback" % "logback-access" % "1.2.3",
   "javax.servlet" % "javax.servlet-api" % "3.1.0" % Optional
 )
 
 libraryDependencies ++= Seq(
-  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
 )
 
-scalaVersion := "2.12.6"
-crossScalaVersions := Seq("2.11.12", scalaVersion.value)
+scalaVersion := "2.13.5"
+crossScalaVersions := Seq("2.12.10", scalaVersion.value)
 
 scalacOptions ++= Seq("-feature","-deprecation")
 

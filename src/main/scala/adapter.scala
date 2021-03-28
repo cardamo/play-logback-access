@@ -48,7 +48,7 @@ final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, re
   def getRequestHeader(key : String) = request.headers.get(key.toLowerCase).getOrElse(IAccessEvent.NA)
   def getRequestHeaderNames = request.headers.keys.iterator.asJavaEnumeration
   def getRequestHeaderMap = request.headers.toSimpleMap.asJava
-  def getRequestParameterMap = request.queryString.mapValues(_.toArray).asJava
+  def getRequestParameterMap = request.queryString.mapValues(_.toArray).toMap.asJava
   def getAttribute(key : String) = IAccessEvent.NA
   def getRequestParameter(key : String) = request.queryString.get(key).fold(Array(IAccessEvent.NA))(_.toArray)
   def getCookie(key : String) = request.cookies.get(key).fold(IAccessEvent.NA)(_.value)
