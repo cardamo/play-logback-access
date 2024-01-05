@@ -15,6 +15,7 @@ Play version compatibility:
 
 | play version | lib version |
 |--------------|-------------|
+| 3.0.x        | 0.8.0       |
 | 2.8.x        | 0.7.0       |
 | 2.7.x        | 0.6.2       |
 | 2.6.x        | 0.6.2       |

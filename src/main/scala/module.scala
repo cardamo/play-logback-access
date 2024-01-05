@@ -4,8 +4,8 @@ import java.io.File
 import java.net.URL
 
 import javax.inject.{Inject, Provider, Singleton}
-import akka.actor.ActorSystem
-import akka.stream.Materializer
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.stream.Materializer
 import play.api.inject.{ApplicationLifecycle, Binding, Module}
 import play.api.mvc.{Filter, RequestHeader, Result}
 import play.api.{Configuration, Environment}

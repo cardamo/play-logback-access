@@ -3,7 +3,7 @@ package org.databrary
 import java.io.File
 import java.net.URL
 
-import akka.stream.Materializer
+import org.apache.pekko.stream.Materializer
 import ch.qos.logback.access.joran.JoranConfigurator
 import ch.qos.logback.access.spi.IAccessEvent
 import ch.qos.logback.core.spi._
@@ -38,7 +38,7 @@ final class PlayLogbackAccess(configs : Iterable[URL])
     * @param requestTime the time at which the request was received
     */
   def log(requestTime : Long = -1, request : RequestHeader, result : Result, user : Option[String] = None) {
-    val ev = logback.PlayAccessEvent(requestTime, request, result, user)
+    val ev = logback.PlayAccessEvent(this, requestTime, request, result, user)
     if (getFilterChainDecision(ev) != FilterReply.DENY)
       aai.appendLoopOnAppenders(ev)
   }
