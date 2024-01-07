@@ -1,2 +1,1 @@
-// 0.5.0 fails: https://github.com/sbt/sbt-bintray/issues/104
-addSbtPlugin("me.lessis" % "bintray-sbt" % "0.3.0")
+addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.2.1")

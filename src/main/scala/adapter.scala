@@ -1,8 +1,10 @@
 package org.databrary.logback
 
 import ch.qos.logback.access.spi._
-import play.api.mvc.{RequestHeader,Result}
-import scala.collection.JavaConverters.{asJavaEnumerationConverter,mapAsJavaMapConverter,seqAsJavaListConverter}
+import ch.qos.logback.core.Context
+import play.api.mvc.{RequestHeader, Result}
+
+import scala.collection.JavaConverters.{asJavaEnumerationConverter, mapAsJavaMapConverter, seqAsJavaListConverter}
 
 final case class PlayAdapter(requestTime : Long, request : RequestHeader, result : Result) extends ServerAdapter {
   def getRequestTimestamp = requestTime
@@ -15,7 +17,7 @@ object PlayAccessEvent {
   private final val portPattern = ":([0-9]{1,5})$".r.pattern
 }
 
-final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, result : Result, user : Option[String]) extends IAccessEvent {
+final case class PlayAccessEvent(context: Context, requestTime : Long, request : RequestHeader, result : Result, user : Option[String]) extends IAccessEvent {
   private[this] val timestamp = System.currentTimeMillis
   private[this] lazy val adapter = PlayAdapter(requestTime, request, result)
 
@@ -71,4 +73,6 @@ final case class PlayAccessEvent(requestTime : Long, request : RequestHeader, re
   def getThreadName: String = IAccessEvent.NA
   def getSessionID: String = IAccessEvent.NA
   def setThreadName(threadName: String): Unit = {}
+
+  def getSequenceNumber: Long = context.getSequenceNumberGenerator.nextSequenceNumber()
 }
