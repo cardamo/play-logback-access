@@ -8,7 +8,7 @@ homepage := Some(url("http://github.com/cardamo/play-logback-access"))
 
 licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
-version := "0.8.0-SNAPSHOT"
+version := "0.8.0"
 
 libraryDependencies ++= Seq(
   "org.playframework" %% "play" % "3.0.1",
