@@ -1,4 +1,4 @@
-# Logback-access plugin for Play 2
+# Logback-access plugin for Play 2 & 3
 
 This plugin allows you to use [Logback](http://logback.qos.ch)'s very flexible [access](http://logback.qos.ch/access.html) framework within [Play](http://www.playframework.com).
 
@@ -9,7 +9,7 @@ Add JitPack resolver and the dependency
 
     resolvers += "jitpack" at "https://jitpack.io"
 
-    libraryDependencies += "com.github.cardamo" % "play-logback-access" % "0.7.0"
+    libraryDependencies += "com.github.cardamo" % "play-logback-access" % "0.8.0"
 
 Play version compatibility:
 
