@@ -19,25 +19,25 @@ object PlayLogbackAccess {
 final class PlayLogbackAccess(configs : Iterable[URL])
   extends Logback.ContextBase with AppenderAttachable[IAccessEvent] with FilterAttachable[IAccessEvent] {
 
-  private[this] val aai = new AppenderAttachableImpl[IAccessEvent]
-  private[this] val fai = new FilterAttachableImpl[IAccessEvent]
+  private val aai = new AppenderAttachableImpl[IAccessEvent]
+  private val fai = new FilterAttachableImpl[IAccessEvent]
 
-  override def start {
+  override def start(): Unit = {
     val jc = new JoranConfigurator
     jc.setContext(this)
     configs.foreach(jc.doConfigure)
-    super.start
+    super.start()
   }
 
-  override def stop {
+  override def stop(): Unit = {
     detachAndStopAllAppenders
-    super.stop
+    super.stop()
   }
 
   /** Log a completed request.
     * @param requestTime the time at which the request was received
     */
-  def log(requestTime : Long = -1, request : RequestHeader, result : Result, user : Option[String] = None) {
+  def log(requestTime : Long = -1, request : RequestHeader, result : Result, user : Option[String] = None): Unit = {
     val ev = logback.PlayAccessEvent(this, requestTime, request, result, user)
     if (getFilterChainDecision(ev) != FilterReply.DENY)
       aai.appendLoopOnAppenders(ev)

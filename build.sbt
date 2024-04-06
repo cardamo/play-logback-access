@@ -8,23 +8,23 @@ homepage := Some(url("http://github.com/cardamo/play-logback-access"))
 
 licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
-version := "0.8.0-SNAPSHOT"
+version := "0.9.0-SNAPSHOT"
 
 libraryDependencies ++= Seq(
   "org.playframework" %% "play" % "3.0.1",
-  "ch.qos.logback" % "logback-access" % "1.4.7",
+  "ch.qos.logback" % "logback-access" % "1.4.14",
   "jakarta.servlet" % "jakarta.servlet-api" % "6.0.0" % Optional,
   //https://github.com/playframework/playframework/releases/tag/2.8.15
-  "com.google.inject"            % "guice"                % "5.1.0",
-  "com.google.inject.extensions" % "guice-assistedinject" % "5.1.0"
+  "com.google.inject"            % "guice"                % "6.0.0",
+  "com.google.inject.extensions" % "guice-assistedinject" % "6.0.0"
 )
 
 libraryDependencies ++= Seq(
   "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test,
-  "org.playframework" %% "play-pekko-http-server" % "3.0.1" % Test
+  "org.playframework" %% "play-pekko-http-server" % "3.0.2" % Test
 )
 
-scalaVersion := "2.13.5"
+crossScalaVersions := Seq("3.4.1", "2.13.13")
 
 scalacOptions ++= Seq("-feature","-deprecation")
 
