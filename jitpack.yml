@@ -1,0 +1,7 @@
+jdk:
+  - openjdk11
+before_install:
+  - sbt "clean"
+install:
+  - sbt "+test"
+  - sbt "+publishM2"
