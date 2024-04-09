@@ -24,7 +24,8 @@ libraryDependencies ++= Seq(
   "org.playframework" %% "play-pekko-http-server" % "3.0.2" % Test
 )
 
-crossScalaVersions := Seq("3.4.1", "2.13.13")
+scalaVersion := "2.13.13"
+crossScalaVersions := Seq("3.4.1", scalaVersion.value)
 
 scalacOptions ++= Seq("-feature","-deprecation")
 
