@@ -1,0 +1,4 @@
+language: scala
+scala:
+    - 2.13.13
+    - 3.4.1

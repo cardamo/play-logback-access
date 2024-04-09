@@ -1,4 +1,0 @@
-jdk:
-  - openjdk11
-install:
-   - sbt -Dsbt.log.noformat=true clean +package +publishM2
